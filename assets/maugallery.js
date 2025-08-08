@@ -239,37 +239,11 @@
       $(".gallery-item").each(function () {
         $(this).parents(".item-column").hide();
         if (tag === "all") {
-          $(this).parents(".item-column").show(300);
+          $(this).parents(".item-column").show();
         } else if ($(this).data("gallery-tag") === tag) {
-          $(this).parents(".item-column").show(300);
+          $(this).parents(".item-column").show();
         }
       });
     },
-
-    // filterByTag() {
-    //   const $clickedBtn = $(this); // stocke le bouton cliqué
-    //   if ($clickedBtn.hasClass("active-tag")) return; // si déjà actif, on sort
-
-    //   // Changement de style bouton actif
-    //   $(".active-tag").removeClass("active active-tag");
-    //   $clickedBtn.addClass("active-tag");
-
-    //   const tag = $clickedBtn.data("images-toggle"); // récupère la catégorie choisie
-    //   const $allItems = $(".item-column"); // toutes les colonnes
-
-    //   // On cache tout d’un coup
-    //   $allItems.hide();
-
-    //   // On affiche seulement les bons
-    //   if (tag === "all") {
-    //     $allItems.show(300); // tout montrer
-    //   } else {
-    //     $allItems
-    //       .filter(function () {
-    //         return $(this).find(".gallery-item").data("gallery-tag") === tag;
-    //       })
-    //       .show(300);
-    //   }
-    // },
   };
 })(jQuery);
