@@ -2,7 +2,7 @@ async function loadTemplates() {
   const response = await fetch("./assets/templates.html");
   const html = await response.text();
   const container = document.createElement("div");
-  container.style.display = "none";
+  container.classList.add("hidden");
   container.innerHTML = html;
   document.body.appendChild(container);
 }

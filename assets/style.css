@@ -90,9 +90,6 @@ nav a {
 	font-size: 14px;
 }
 
-#gallery {
-	/*	min-height: 100vh; */
-}
 .title{
 	text-align: center;
 	padding-block: 2em;
@@ -135,6 +132,19 @@ nav a {
 	align-items: center;
 	display: flex;
 	font-size: 24px;
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	background: white;
+	z-index: 1;
+}
+
+.mg-prev { 
+	left: -15px;
+}
+
+.mg-next {
+	right: -15px;
 }
 
 .quote {
@@ -245,6 +255,12 @@ input[type="submit"] {
 	background-color: #BEB45A;
 	padding: .5em 1em
 }
+
+.hidden { 
+	display: none;
+}
+
+
 
 @media all and (max-width: 1180px) {
 	.picture {

@@ -68,38 +68,37 @@
   $.fn.mauGallery.methods = {
     createRowWrapper(element) {
       if (!element.children().first().hasClass("row")) {
-        element.append('<div class="gallery-items-row row"></div>');
+        element.prepend('<div class="gallery-items-row row"></div>');
       }
     },
     wrapItemInColumn(element, columns) {
-      if (columns.constructor === Number) {
-        element.wrap(
-          `<div class='item-column mb-4 col-${Math.ceil(12 / columns)}'></div>`
-        );
-      } else if (columns.constructor === Object) {
-        var columnClasses = "";
-        if (columns.xs) {
-          columnClasses += ` col-${Math.ceil(12 / columns.xs)}`;
-        }
-        if (columns.sm) {
-          columnClasses += ` col-sm-${Math.ceil(12 / columns.sm)}`;
-        }
-        if (columns.md) {
-          columnClasses += ` col-md-${Math.ceil(12 / columns.md)}`;
-        }
-        if (columns.lg) {
-          columnClasses += ` col-lg-${Math.ceil(12 / columns.lg)}`;
-        }
-        if (columns.xl) {
-          columnClasses += ` col-xl-${Math.ceil(12 / columns.xl)}`;
-        }
-        element.wrap(`<div class='item-column mb-4${columnClasses}'></div>`);
+      const template = document.getElementById("gallery-column-template");
+      const clone = template.content.cloneNode(true);
+      const wrapper = clone.querySelector(".item-column");
+
+      if (typeof columns === "object") {
+        if (columns.xs)
+          wrapper.classList.add(`col-${Math.ceil(12 / columns.xs)}`);
+        if (columns.sm)
+          wrapper.classList.add(`col-sm-${Math.ceil(12 / columns.sm)}`);
+        if (columns.md)
+          wrapper.classList.add(`col-md-${Math.ceil(12 / columns.md)}`);
+        if (columns.lg)
+          wrapper.classList.add(`col-lg-${Math.ceil(12 / columns.lg)}`);
+        if (columns.xl)
+          wrapper.classList.add(`col-xl-${Math.ceil(12 / columns.xl)}`);
+      } else if (typeof columns === "number") {
+        wrapper.classList.add(`col-${Math.ceil(12 / columns)}`);
       } else {
         console.error(
           `Columns should be defined as numbers or objects. ${typeof columns} is not supported.`
         );
       }
+      const $wrapper = $(wrapper);
+      element.before($wrapper);
+      $wrapper.append(element);
     },
+
     moveItemInRowWrapper(element) {
       element.appendTo(".gallery-items-row");
     },
@@ -195,27 +194,31 @@
         modal.id = lightboxId;
       }
       if (!navigation) {
-        clone.querySelector(".mg-prev").style.display = "none";
-        clone.querySelector(".mg-next").style.display = "none";
+        clone.querySelector(".mg-prev").classList.add("hidden");
+        clone.querySelector(".mg-next").classList.add("hidden");
       }
       gallery.append(modal);
     },
 
     showItemTags(gallery, position, tags) {
-      const template = document.getElementById("tags-row-template");
-      const clone = template.content.cloneNode(true);
-      const ul = clone.querySelector("ul");
+      const ul = document.createElement("ul");
+      ul.className = "my-4 tags-bar nav nav-pills";
 
-      const allItem = document.createElement("li");
-      allItem.className = "nav-item";
-      allItem.innerHTML = `<span class="nav-link active active-tag" data-images-toggle="all">Tous</span>`;
-      ul.appendChild(allItem);
+      const template = document.getElementById("tag-item-template");
+
+      const allClone = template.content.cloneNode(true);
+      const allSpan = allClone.querySelector("span");
+      allSpan.textContent = "Tous";
+      allSpan.classList.add("active", "active-tag");
+      allSpan.dataset.imagesToggle = "all";
+      ul.appendChild(allClone);
 
       tags.forEach((tag) => {
-        const li = document.createElement("li");
-        li.className = "nav-item";
-        li.innerHTML = `<span class="nav-link" data-images-toggle="${tag}">${tag}</span>`;
-        ul.appendChild(li);
+        const clone = template.content.cloneNode(true);
+        const span = clone.querySelector("span");
+        span.textContent = tag;
+        span.dataset.imagesToggle = tag;
+        ul.appendChild(clone);
       });
 
       if (position === "bottom") {
