@@ -2,9 +2,48 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <title>Nina Carducci - Photographe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="nina carducci photographe" />
+    <meta
+      name="description"
+      content="Photographe professionnel à Bordeaux - séances photo, portraits, mariages, évènements, book."
+    />
+    <meta name="author" content="Nina Carducci" />
+    <meta name="robots" content="index, follow" />
+
+    <meta
+      property="og:title"
+      content="Photographe à Bordeaux – Nom de la photographe"
+    />
+    <meta
+      property="og:description"
+      content="Séances photo sur mesure à Bordeaux : portraits, book, événements."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://candid-fairy-83cdbd.netlify.app/"
+    />
+    <meta
+      property="og:image"
+      content="https://candid-fairy-83cdbd.netlify.app/images/og-image.jpg"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Photographe à Bordeaux – Nom de la photographe"
+    />
+    <meta
+      name="twitter:description"
+      content="Séances photo sur mesure à Bordeaux : portraits, book, événements."
+    />
+    <meta
+      name="twitter:image"
+      content="https://candid-fairy-83cdbd.netlify.app/images/og-image.jpg"
+    />
+
+    <title>Nina Carducci - Photographe</title>
+
     <link rel="stylesheet" href="./assets/bootstrap/bootstrap.css" />
     <link rel="stylesheet" href="./assets/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -302,5 +341,38 @@
         </div>
       </section>
     </main>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Photographe",
+        "name": "Nina Carducci",
+        "image": "https://candid-fairy-83cdbd.netlify.app/images/og-image.jpg",
+        "@id": "https://candid-fairy-83cdbd.netlify.app/",
+        "url": "https://candid-fairy-83cdbd.netlify.app/",
+        "telephone": "+33 5 56 67 78 89",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "68 avenue Alsace Lorraine",
+          "addressLocality": "Bordeaux",
+          "postalCode": "33200",
+          "addressCountry": "FR"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "10:00",
+            "closes": "19:00"
+          }
+        ],
+        "sameAs": ["https://www.instagram.com/ninacarducci.photo/?hl=fr"]
+      }
+    </script>
   </body>
 </html>
