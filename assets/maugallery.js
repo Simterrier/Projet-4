@@ -185,42 +185,43 @@
       let next = imagesCollection[index];
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
+
     createLightBox(gallery, lightboxId, navigation) {
-      gallery.append(`<div class="modal fade" id="${
-        lightboxId ? lightboxId : "galleryLightbox"
-      }" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            ${
-                              navigation
-                                ? '<div class="mg-prev" style="cursor:pointer;position:absolute;top:50%;left:-15px;background:white;"><</div>'
-                                : '<span style="display:none;" />'
-                            }
-                            <img class="lightboxImage img-fluid" alt="Contenu de l'image affichée dans la modale au clique"/>
-                            ${
-                              navigation
-                                ? '<div class="mg-next" style="cursor:pointer;position:absolute;top:50%;right:-15px;background:white;}">></div>'
-                                : '<span style="display:none;" />'
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>`);
+      const template = document.getElementById("lightbox-template");
+      const clone = template.content.cloneNode(true);
+      const modal = clone.querySelector(".modal");
+
+      if (lightboxId) {
+        modal.id = lightboxId;
+      }
+      if (!navigation) {
+        clone.querySelector(".mg-prev").style.display = "none";
+        clone.querySelector(".mg-next").style.display = "none";
+      }
+      gallery.append(modal);
     },
+
     showItemTags(gallery, position, tags) {
-      var tagItems =
-        '<li class="nav-item"><span class="nav-link active active-tag"  data-images-toggle="all">Tous</span></li>';
-      $.each(tags, function (index, value) {
-        tagItems += `<li class="nav-item active">
-                <span class="nav-link"  data-images-toggle="${value}">${value}</span></li>`;
+      const template = document.getElementById("tags-row-template");
+      const clone = template.content.cloneNode(true);
+      const ul = clone.querySelector("ul");
+
+      const allItem = document.createElement("li");
+      allItem.className = "nav-item";
+      allItem.innerHTML = `<span class="nav-link active active-tag" data-images-toggle="all">Tous</span>`;
+      ul.appendChild(allItem);
+
+      tags.forEach((tag) => {
+        const li = document.createElement("li");
+        li.className = "nav-item";
+        li.innerHTML = `<span class="nav-link" data-images-toggle="${tag}">${tag}</span>`;
+        ul.appendChild(li);
       });
-      var tagsRow = `<ul class="my-4 tags-bar nav nav-pills">${tagItems}</ul>`;
 
       if (position === "bottom") {
-        gallery.append(tagsRow);
+        gallery.append(ul);
       } else if (position === "top") {
-        gallery.prepend(tagsRow);
+        gallery.prepend(ul);
       } else {
         console.error(`Unknown tags position: ${position}`);
       }
