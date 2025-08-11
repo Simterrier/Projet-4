@@ -243,9 +243,9 @@
       $(".gallery-item").each(function () {
         $(this).parents(".item-column").hide();
         if (tag === "all") {
-          $(this).parents(".item-column").show();
+          $(this).parents(".item-column").show(300);
         } else if ($(this).data("gallery-tag") === tag) {
-          $(this).parents(".item-column").show();
+          $(this).parents(".item-column").show(300);
         }
       });
     },
