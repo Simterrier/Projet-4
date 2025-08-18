@@ -128,7 +128,7 @@ nav a {
 .mg-prev, .mg-next {
 	width: 30px;
 	height: 30px;
-	border-radius: 00%;
+	border-radius: 0;
 	justify-content: center;
 	align-items: center;
 	display: flex;
