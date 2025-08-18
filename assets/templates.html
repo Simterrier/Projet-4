@@ -4,17 +4,19 @@
     id="galleryLightbox"
     tabindex="-1"
     role="dialog"
+    aria-modal="true"
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <div class="mg-prev"><</div>
-          <img
-            class="lightboxImage img-fluid"
-            alt="Contenu de l'image affichée dans la modale au clic"
-          />
-          <div class="mg-next">></div>
+          <button type="button" class="mg-prev" aria-label="Image précédente">
+            ‹
+          </button>
+          <img class="lightboxImage img-fluid" alt="" />
+          <button type="button" class="mg-next" aria-label="Image suivante">
+            ›
+          </button>
         </div>
       </div>
     </div>
@@ -31,6 +33,6 @@
 
 <template id="tag-item-template">
   <li class="nav-item">
-    <span class="nav-link"></span>
+    <button type="button" class="nav-link" aria-pressed="false"></button>
   </li>
 </template>

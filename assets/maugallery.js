@@ -207,17 +207,19 @@
       const template = document.getElementById("tag-item-template");
 
       const allClone = template.content.cloneNode(true);
-      const allSpan = allClone.querySelector("span");
-      allSpan.textContent = "Tous";
-      allSpan.classList.add("active", "active-tag");
-      allSpan.dataset.imagesToggle = "all";
+      const allButton = allClone.querySelector("button");
+      allButton.textContent = "Tous";
+      allButton.classList.add("active", "active-tag");
+      allButton.dataset.imagesToggle = "all";
+      allButton.setAttribute("aria-pressed", "true");
       ul.appendChild(allClone);
 
       tags.forEach((tag) => {
         const clone = template.content.cloneNode(true);
-        const span = clone.querySelector("span");
-        span.textContent = tag;
-        span.dataset.imagesToggle = tag;
+        const button = clone.querySelector("button");
+        button.textContent = tag;
+        button.dataset.imagesToggle = tag;
+        button.setAttribute("aria-pressed", "false");
         ul.appendChild(clone);
       });
 
