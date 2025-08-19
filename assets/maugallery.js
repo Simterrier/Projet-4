@@ -120,7 +120,8 @@
           activeImage = $(this);
         }
       });
-      let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
+
+      let activeTag = $(".tags-bar .nav-link.active-tag").data("images-toggle");
       let imagesCollection = [];
       if (activeTag === "all") {
         $(".item-column").each(function () {
@@ -135,6 +136,7 @@
           }
         });
       }
+
       let index = 0;
 
       $(imagesCollection).each(function (i) {
@@ -142,6 +144,7 @@
           index = i;
         }
       });
+
       index--;
       if (index < 0) index = imagesCollection.length - 1;
 
@@ -157,7 +160,7 @@
         }
       });
 
-      let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
+      let activeTag = $(".tags-bar .nav-link.active-tag").data("images-toggle");
       let imagesCollection = [];
       if (activeTag === "all") {
         $(".item-column").each(function () {
